@@ -1,0 +1,13 @@
+.search {
+  position: fixed;
+  width: 150px;
+  height: 75px;
+  background: rgba(226,226,226,.5);
+  padding-bottom: 0;
+  transition: .5s ease;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

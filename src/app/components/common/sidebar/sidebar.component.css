@@ -1,0 +1,11 @@
+.sidebar {
+  position: fixed;
+  width: 150px;
+  height: calc(100% - 30px);
+  background: rgba(226,226,226,.5);
+  padding: 30px 10px;
+  padding-bottom: 0;
+  transition: .5s ease;
+  top: 0;
+  left: 0;
+}

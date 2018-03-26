@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { SearchComponent } from './components/search/search.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { SidebarComponent } from './components/common/sidebar/sidebar.component';
+import { SearchComponent } from './components/common/search/search.component';
 
 
 @NgModule({
