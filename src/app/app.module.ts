@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { SearchComponent } from './components/common/search/search.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SearchComponent } from './components/common/search/search.component';
     SearchComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
