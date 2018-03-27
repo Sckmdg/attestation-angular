@@ -11,9 +11,10 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { SearchComponent } from './components/common/search/search.component';
-import { SlideComponent } from './components/slide/slide.component';
+import { RootSlideComponent } from './components/root-slide/root-slide.component';
 
 import { SlideService } from './services/slide.service';
+import { TemplateDirective } from './directives/template.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SlideService } from './services/slide.service';
     FooterComponent,
     SidebarComponent,
     SearchComponent,
-    SlideComponent
+    TemplateDirective,
+    RootSlideComponent
   ],
   imports: [
     BrowserModule,

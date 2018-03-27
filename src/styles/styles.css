@@ -1,6 +1,6 @@
 .content {
   margin-left: 170px;
   padding: 25px;
-  width: 100%;
+  width: calc(100% - 220px);
   height: calc(100% - 60px);
 }

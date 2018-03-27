@@ -5,11 +5,11 @@ import { SlideService } from '../../services/slide.service';
 
 @Component({
   selector: 'app-slide',
-  templateUrl: './slide.component.html',
-  styleUrls: ['./slide.component.css']
+  templateUrl: './root-slide.component.html',
+  styleUrls: ['./root-slide.component.css']
 })
 
-export class SlideComponent implements OnInit {
+export class RootSlideComponent implements OnInit {
   @Input() slide: Slide;
 
   constructor(
@@ -18,10 +18,10 @@ export class SlideComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getHero();
+    this.getSlide();
   }
 
-  getHero(): void {
+  getSlide(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.slideService.getSlide(id)
       .subscribe(slide => this.slide = slide);
