@@ -14,7 +14,6 @@ import { SearchComponent } from './components/common/search/search.component';
 import { SlideComponent } from './components/slide/slide.component';
 
 import { SlideService } from './services/slide.service';
-import { TemplateDirective } from './directives/template.directive'
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { TemplateDirective } from './directives/template.directive'
     FooterComponent,
     SidebarComponent,
     SearchComponent,
-    SlideComponent,
-    TemplateDirective
+    SlideComponent
   ],
   imports: [
     BrowserModule,
