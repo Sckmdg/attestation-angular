@@ -13,7 +13,8 @@ import { SidebarComponent } from './components/common/sidebar/sidebar.component'
 import { SearchComponent } from './components/common/search/search.component';
 import { SlideComponent } from './components/slide/slide.component';
 
-import { SlideService } from './services/slide.service'
+import { SlideService } from './services/slide.service';
+import { TemplateDirective } from './directives/template.directive'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SlideService } from './services/slide.service'
     FooterComponent,
     SidebarComponent,
     SearchComponent,
-    SlideComponent
+    SlideComponent,
+    TemplateDirective
   ],
   imports: [
     BrowserModule,
