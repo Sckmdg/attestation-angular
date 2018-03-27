@@ -5,12 +5,12 @@ import { HttpClientModule }    from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { SearchComponent } from './components/common/search/search.component';
-import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SlideComponent } from './components/slide/slide.component';
 
 import { SlideService } from './services/slide.service'
