@@ -18,41 +18,41 @@ export class SlideService {
 
   constructor(
     private http: HttpClient) { }
-  //
-  // /** GET slides from the server */
-  // getSlides (): Observable<Slide[]> {
-  //   return this.http.get<Slide[]>(this.slidesUrl)
-  //     .pipe(
-  //       tap(slides => this.log(`fetched slides`)),
-  //       catchError(this.handleError('getSlides', []))
-  //     );
-  // }
-  //
-  // /** GET slide by id. Will 404 if id not found */
-  // getSlideNo404<Data>(id: number): Observable<Slide> {
-  //   const url = `${this.slidesUrl}/?id=${id}`;
-  //   return this.http.get<Slide[]>(url)
-  //     .pipe(
-  //       map(slides => slides[0]), // returns a {0|1} element array
-  //       tap(h => {
-  //         const outcome = h ? `fetched` : `did not find`;
-  //         this.log(`${outcome} slide id=${id}`);
-  //       }),
-  //       catchError(this.handleError<Slide>(`getSlide id=${id}`))
-  //     );
-  // }
-  //
-  // /* GET slides whose name contains search term */
-  // searchSlides(term: string): Observable<Slide[]> {
-  //   if (!term.trim()) {
-  //     // if not search term, return empty slide array.
-  //     return of([]);
-  //   }
-  //   return this.http.get<Slide[]>(`api/slides/?name=${term}`).pipe(
-  //     tap(_ => this.log(`found slides matching "${term}"`)),
-  //     catchError(this.handleError<Slide[]>('searchSlides', []))
-  //   );
-  // }
+
+  /** GET slides from the server */
+  getSlides (): Observable<Slide[]> {
+    return this.http.get<Slide[]>(this.slidesUrl)
+      .pipe(
+        tap(slides => this.log(`fetched slides`)),
+        catchError(this.handleError('getSlides', []))
+      );
+  }
+
+  /** GET slide by id. Will 404 if id not found */
+  getSlideNo404<Data>(id: number): Observable<Slide> {
+    const url = `${this.slidesUrl}/?id=${id}`;
+    return this.http.get<Slide[]>(url)
+      .pipe(
+        map(slides => slides[0]), // returns a {0|1} element array
+        tap(h => {
+          const outcome = h ? `fetched` : `did not find`;
+          this.log(`${outcome} slide id=${id}`);
+        }),
+        catchError(this.handleError<Slide>(`getSlide id=${id}`))
+      );
+  }
+
+  /* GET slides whose name contains search term */
+  searchSlides(term: string): Observable<Slide[]> {
+    if (!term.trim()) {
+      // if not search term, return empty slide array.
+      return of([]);
+    }
+    return this.http.get<Slide[]>(`api/slides/?name=${term}`).pipe(
+      tap(_ => this.log(`found slides matching "${term}"`)),
+      catchError(this.handleError<Slide[]>('searchSlides', []))
+    );
+  }
 
   /** GET slide by id. Return `undefined` when id not found */
   getSlide(id: number): Observable<Slide> {
