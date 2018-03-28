@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Slide } from './slide'
 import { SlideService } from '../../services/slide.service';
@@ -9,7 +9,8 @@ import { SlideService } from '../../services/slide.service';
   styleUrls: ['./root-slide.component.css']
 })
 
-export class RootSlideComponent implements OnInit {
+export class RootSlideComponent implements OnInit, DoCheck {
+  currentSlideId: number;
   @Input() slide: Slide;
 
   constructor(
@@ -18,13 +19,26 @@ export class RootSlideComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initCurrentSlide();
     this.getSlide();
   }
 
+  ngDoCheck(): void {
+    const id = this.slideService.getParamFromRoute(this.route, 'id');
+
+    if (id !== this.currentSlideId) {
+      this.currentSlideId = id;
+      this.getSlide();
+    }
+  };
+
   getSlide(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.slideService.getSlide(id)
+    this.slideService.getSlide(this.currentSlideId)
       .subscribe(slide => this.slide = slide);
+  }
+
+  initCurrentSlide(): void {
+    this.currentSlideId = this.slideService.getParamFromRoute(this.route, 'id');
   }
 
 }

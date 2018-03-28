@@ -9,7 +9,7 @@ import { Slide} from "../../root-slide/slide";
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  currentSlide: number;
+  currentSlideId: number;
   slides: Slide[] = [];
 
   constructor(
@@ -20,7 +20,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.initCurrentSlide();
     this.getSlides();
-    console.log(this);
   }
 
   getSlides(): void {
@@ -29,7 +28,7 @@ export class SidebarComponent implements OnInit {
   }
 
   initCurrentSlide(): void {
-    this.currentSlide = +this.route.snapshot.paramMap.get('id');
+    this.currentSlideId = this.slideService.getParamFromRoute(this.route, 'id');
   }
 
 }

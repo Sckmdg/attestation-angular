@@ -19,6 +19,11 @@ export class SlideService {
   constructor(
     private http: HttpClient) { }
 
+  /** Getting param from route */
+  public getParamFromRoute (route: any, param: string): number {
+    return param === 'id' ? +route.snapshot.paramMap.get(param) : route.snapshot.paramMap.get(param)
+  }
+
   /** GET slides from the server */
   getSlides (): Observable<Slide[]> {
     return this.http.get<Slide[]>(this.slidesUrl)
