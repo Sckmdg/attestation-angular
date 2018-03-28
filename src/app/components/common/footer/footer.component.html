@@ -4,9 +4,9 @@
     <- Prev
   </button>
   <div>
-    {{currentSlideId + 1}} / {{slides.length + 1}}
+    {{currentSlideId}} / {{slides.length}}
   </div>
-  <button routerLink="/slide/{{currentSlideId + 1}}" [disabled]="currentSlideId + 1 === slides.length + 1">
+  <button routerLink="/slide/{{currentSlideId + 1}}" [disabled]="currentSlideId === slides.length">
     Next ->
   </button>
 </div>
