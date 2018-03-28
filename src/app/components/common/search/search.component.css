@@ -1,13 +1,19 @@
 .search {
   position: fixed;
-  width: 150px;
+  width: 200px;
   height: 75px;
   background: rgba(226,226,226,.5);
   padding-bottom: 0;
   transition: .5s ease;
-  top: 0;
-  right: 0;
+  top: 25px;
+  right: 25px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.search p {
+  margin-top: 0;
+  margin-bottom: 5px;
 }
