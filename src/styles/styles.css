@@ -4,3 +4,36 @@
   width: calc(100% - 220px);
   height: calc(100% - 60px);
 }
+
+@keyframes square-spin {
+  25% {
+    -webkit-transform: perspective(100px) rotateX(180deg) rotateY(0);
+    transform: perspective(100px) rotateX(180deg) rotateY(0)
+  }
+
+  50% {
+    -webkit-transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+    transform: perspective(100px) rotateX(180deg) rotateY(180deg)
+  }
+
+  75% {
+    -webkit-transform: perspective(100px) rotateX(0) rotateY(180deg);
+    transform: perspective(100px) rotateX(0) rotateY(180deg)
+  }
+
+  100% {
+    -webkit-transform: perspective(100px) rotateX(0) rotateY(0);
+    transform: perspective(100px) rotateX(0) rotateY(0)
+  }
+}
+
+.loader {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  background: url('../img/loader.png') no-repeat;
+  background-size: contain;
+  animation: square-spin 3s 0s cubic-bezier(.09,.57,.49,.9) infinite;
+}
