@@ -1,5 +1,4 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Slide} from "../../root-slide/slide";
 import {SlideService} from "../../../services/slide.service";
 
@@ -13,17 +12,16 @@ export class SidebarComponent implements OnInit, DoCheck {
   slides: Slide[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private slideService: SlideService,
   ) {}
 
   ngOnInit(): void {
-    this.currentSlideId = this.routerHack();
+    this.currentSlideId = this.slideService.routerHack();
     this.getSlides();
   }
 
   ngDoCheck(): void {
-    const id = this.routerHack();;
+    const id = this.slideService.routerHack();;
 
     if (id !== this.currentSlideId) {
       this.currentSlideId = id;
@@ -33,12 +31,6 @@ export class SidebarComponent implements OnInit, DoCheck {
   getSlides(): void {
     this.slideService.getSlides()
       .subscribe(slides => this.slides = slides);
-  }
-
-  routerHack(): number {
-    const slashIndex = location.pathname.lastIndexOf('/') + 1;
-    const id = Number(location.pathname.slice(slashIndex, location.pathname.length));
-    return id
   }
 
 }

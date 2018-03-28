@@ -29,6 +29,9 @@
   background: #ffff;
   transition: .5s ease;
   flex-direction: column;
+  outline: none;
+  box-shadow: 0 10px 6px -6px #777;
+  border: 1px solid rgba(226,226,226,.5);
 }
 
 .slide:hover {
@@ -37,7 +40,7 @@
 }
 
 .slide--current {
-  border: 1px solid greenyellow;
+  background: rgba(226,226,226,.5);
 }
 
 .slide--current p {
