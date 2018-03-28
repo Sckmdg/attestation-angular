@@ -27,4 +27,19 @@
   justify-content: center;
   align-items: center;
   background: #ffff;
+  transition: .5s ease;
+  flex-direction: column;
+}
+
+.slide:hover {
+  cursor: pointer;
+  background: rgba(226,226,226,.5);
+}
+
+.slide--current {
+  border: 1px solid greenyellow;
+}
+
+.slide--current p {
+  margin-bottom: 0;
 }

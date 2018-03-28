@@ -1,7 +1,17 @@
 <div class="sidebar">
   <ul class="slides-container" *ngIf="slides">
-    <li class="slide" *ngFor="let slide of slides" routerLink="/slide/{{slide.id}}">
+    <li
+      *ngFor="let slide of slides"
+      [ngClass]="{
+      'slide':true,
+      'slide--current':currentSlideId === slide.id
+      }"
+      routerLink="/slide/{{slide.id}}"
+    >
       {{slide.title}}
+      <p *ngIf="currentSlideId === slide.id">
+        Current Slide
+      </p>
     </li>
   </ul>
 </div>

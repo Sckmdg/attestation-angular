@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SlideService } from '../../../services/slide.service';
 import { Slide} from "../../root-slide/slide";
+import {SlideService} from "../../../services/slide.service";
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, DoCheck {
   currentSlideId: number;
   slides: Slide[] = [];
 
@@ -18,17 +18,27 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initCurrentSlide();
+    this.currentSlideId = this.routerHack();
     this.getSlides();
   }
+
+  ngDoCheck(): void {
+    const id = this.routerHack();;
+
+    if (id !== this.currentSlideId) {
+      this.currentSlideId = id;
+    }
+  };
 
   getSlides(): void {
     this.slideService.getSlides()
       .subscribe(slides => this.slides = slides);
   }
 
-  initCurrentSlide(): void {
-    this.currentSlideId = this.slideService.getParamFromRoute(this.route, 'id');
+  routerHack(): number {
+    const slashIndex = location.pathname.lastIndexOf('/') + 1;
+    const id = Number(location.pathname.slice(slashIndex, location.pathname.length));
+    return id
   }
 
 }
