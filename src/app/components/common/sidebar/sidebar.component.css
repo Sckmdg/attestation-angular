@@ -9,3 +9,22 @@
   top: 0;
   left: 0;
 }
+
+.slides-container {
+  width: 100%;
+  min-height: 200px;
+  max-height: 600px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.slide {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffff;
+}

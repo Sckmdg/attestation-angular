@@ -1,3 +1,7 @@
 <div class="sidebar">
-  sidebar works!
+  <ul class="slides-container" *ngIf="slides">
+    <li class="slide" *ngFor="let slide of slides" routerLink="/slide/{{slide.id}}">
+      {{slide.title}}
+    </li>
+  </ul>
 </div>
