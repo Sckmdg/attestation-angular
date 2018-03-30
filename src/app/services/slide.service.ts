@@ -64,7 +64,7 @@ export class SlideService {
       // if not search term, return empty slide array.
       return of([]);
     }
-    return this.http.get<Slide[]>(`api/slides/?name=${term}`).pipe(
+    return this.http.get<Slide[]>(`api/slides/?title=${term}`).pipe(
       tap(_ => this.log(`found slides matching "${term}"`)),
       catchError(this.handleError<Slide[]>('searchSlides', []))
     );
