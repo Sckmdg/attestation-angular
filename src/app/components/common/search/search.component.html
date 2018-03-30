@@ -1,8 +1,8 @@
 <div class="search">
   <label for="search">Type Title</label>
-  <input #searchBox type="text" name="search" id="search" (keyup)="search(searchBox.value)">
+  <input #searchBox type="text" name="search" id="search" (keyup)="search(searchBox.value)" (focusout)="onFocusLeave()">
 
-  <ul class="search-result">
+  <ul class="search-result" *ngIf="focus">
     <li *ngFor="let slide of slides | async" routerLink="/slide/{{slide.id}}" class="search-slide">
       {{slide.title}}
     </li>

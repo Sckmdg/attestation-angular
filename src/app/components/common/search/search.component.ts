@@ -16,12 +16,14 @@ import { SlideService } from "../../../services/slide.service";
 export class SearchComponent implements OnInit {
 
   slides: Observable<Slide[]>;
+  focus: boolean;
   private searchTerms = new Subject<string>();
 
   constructor(private slideService: SlideService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
+    this.focus = true;
     this.searchTerms.next(term);
   }
 
@@ -36,6 +38,10 @@ export class SearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.slideService.searchSlides(term)),
     );
+  }
+
+  onFocusLeave(): void {
+    this.focus = false;
   }
 
 }
