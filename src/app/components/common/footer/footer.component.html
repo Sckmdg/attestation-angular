@@ -1,6 +1,6 @@
 <footer>
 <div class="footer" *ngIf="currentSlideId !== null && slides">
-  <button (click)="goBack()">
+  <button (click)="goBack()" [disabled]="currentSlideId === slides[0].id">
     <- Prev
   </button>
   <div>

@@ -1,5 +1,4 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import {SlideService} from "../../../services/slide.service";
 import { Location } from '@angular/common';
 
@@ -13,7 +12,6 @@ export class FooterComponent implements OnInit, DoCheck {
   slides: any;
 
   constructor(
-    private route: ActivatedRoute,
     private slideService: SlideService,
     private location: Location) { }
 
