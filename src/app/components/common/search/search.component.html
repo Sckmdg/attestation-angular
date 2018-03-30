@@ -1,4 +1,4 @@
 <div class="search">
-  <p>Type Title</p>
-  <input type="text">
+  <label for="search">Type Title</label>
+  <input #searchBox type="text" name="search" id="search" (keyup)="search(searchBox.value)">
 </div>

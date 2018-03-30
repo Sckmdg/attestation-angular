@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RootSlideComponent } from "../components/root-slide/root-slide.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/slide/0', pathMatch: 'full' },
+  { path: '', redirectTo: '/slide/1', pathMatch: 'full' },
   { path: 'slide/:id', component: RootSlideComponent }
 ];
 
