@@ -19,17 +19,6 @@ export class SlideService {
   constructor(
     private http: HttpClient) { }
 
-  /**
-   * Hack because of route params. Slide id only have that component that was tied on routing (and directives of component)
-   * ¯\_(ツ)_/¯
-   * @returns {number} - id of current page
-   */
-  routerHack(): number {
-    const slashIndex = location.pathname.lastIndexOf('/') + 1;
-    const id = Number(location.pathname.slice(slashIndex, location.pathname.length));
-    return id
-  }
-
   /** Getting param from route */
   public getParamFromRoute (route: any, param: string): number {
     return param === 'id' ? +route.snapshot.paramMap.get(param) : route.snapshot.paramMap.get(param)

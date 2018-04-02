@@ -1,6 +1,6 @@
 <app-search></app-search>
-<app-sidebar></app-sidebar>
+<app-sidebar [currentSlideId]="currentSlideId" [slides]="slides"></app-sidebar>
 <div class="content">
   <router-outlet></router-outlet>
 </div>
-<app-footer></app-footer>
+<app-footer [currentSlideId]="currentSlideId" [slides]="slides.length" ></app-footer>

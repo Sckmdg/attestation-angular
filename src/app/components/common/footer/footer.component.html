@@ -1,12 +1,12 @@
 <footer>
 <div class="footer" *ngIf="currentSlideId !== null && slides">
-  <button (click)="goBack()" [disabled]="currentSlideId === slides[0].id">
+  <button (click)="goBack()" [disabled]="currentSlideId === 1">
     <- Prev
   </button>
   <div>
-    {{currentSlideId}} / {{slides.length}}
+    {{currentSlideId}} / {{slides}}
   </div>
-  <button routerLink="/slide/{{currentSlideId + 1}}" [disabled]="currentSlideId === slides.length">
+  <button routerLink="/slide/{{currentSlideId + 1}}" [disabled]="currentSlideId === slides">
     Next ->
   </button>
 </div>
