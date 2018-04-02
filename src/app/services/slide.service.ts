@@ -44,18 +44,33 @@ export class SlideService {
       );
   }
 
-  /** GET slide by id. Will 404 if id not found */
-  getSlideNo404<Data>(id: number): Observable<Slide> {
-    const url = `${this.slidesUrl}/?id=${id}`;
-    return this.http.get<Slide[]>(url)
-      .pipe(
-        map(slides => slides[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} slide id=${id}`);
-        }),
-        catchError(this.handleError<Slide>(`getSlide id=${id}`))
-      );
+  //////// Save methods //////////
+
+  /** POST: add a new slide to the server */
+  addSlide (slide: Slide): Observable<Slide> {
+    return this.http.post<Slide>(this.slidesUrl, slide, httpOptions).pipe(
+      tap((slide: Slide) => this.log(`added slide w/ id=${slide.id}`)),
+      catchError(this.handleError<Slide>('addSlide'))
+    );
+  }
+
+  /** DELETE: delete the slide from the server */
+  deleteSlide (slide: Slide | number): Observable<Slide> {
+    const id = typeof slide === 'number' ? slide : slide.id;
+    const url = `${this.slidesUrl}/${id}`;
+
+    return this.http.delete<Slide>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted slide id=${id}`)),
+      catchError(this.handleError<Slide>('deleteSlide'))
+    );
+  }
+
+  /** PUT: update the slide on the server */
+  updateSlide (slide: Slide): Observable<any> {
+    return this.http.put(this.slidesUrl, slide, httpOptions).pipe(
+      tap(_ => this.log(`updated slide id=${slide.id}`)),
+      catchError(this.handleError<any>('updateSlide'))
+    );
   }
 
   /* GET slides whose name contains search term */

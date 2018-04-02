@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    const id = this.slideService.routerHack();;
+    const id = this.slideService.routerHack();
 
     if (id !== this.currentSlideId) {
       this.currentSlideId = id;

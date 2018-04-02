@@ -20,6 +20,7 @@
 }
 
 .slide {
+  position: relative;
   width: 95%;
   height: 100px;
   margin-bottom: 25px;
@@ -45,4 +46,19 @@
 
 .slide--current p {
   margin-bottom: 0;
+}
+
+.delete {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  position: absolute;
+  right: 0;
+  top: 5px;
+  text-align: center;
+  transition: .5s ease;
+}
+
+.delete:hover {
+  background: rgba(226, 0, 5, 0.5);
 }
