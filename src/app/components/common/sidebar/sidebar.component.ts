@@ -1,7 +1,5 @@
-import {Component, Input} from '@angular/core';
-import { Slide} from "../../root-slide/slide";
-import { SlideService } from "../../../services/slide.service";
-import { Router } from "@angular/router";
+import {Component, EventEmitter, Input, Output } from '@angular/core';
+import { Slide } from "../../root-slide/slide";
 
 @Component({
   selector: 'app-sidebar',
@@ -11,17 +9,11 @@ import { Router } from "@angular/router";
 export class SidebarComponent {
   @Input() currentSlideId: number;
   @Input() slides: Slide[];
+  @Output() onDeleteSlide: EventEmitter<Slide> = new EventEmitter<Slide>();
 
-  constructor(
-    private slideService: SlideService,
-    private router: Router) {}
-
-  deleteSlide(slide: Slide): void {
-    this.slides = this.slides.filter(h => h !== slide);
-    this.slideService.deleteSlide(slide).subscribe();
-    if (slide.id === this.currentSlideId) {
-      this.router.navigate([`/slide/${this.slides[0].id}`]);
-    }
+  deleteHandler(slide: Slide): void {
+    this.onDeleteSlide.emit(slide);
   }
 
+  constructor() {}
 }
