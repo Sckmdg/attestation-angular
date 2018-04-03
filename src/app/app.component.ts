@@ -55,6 +55,10 @@ export class AppComponent implements OnInit {
         this.slides.push(slide);
       });
   }
+
+  onEditSlide(slide: Slide): void {
+    this.slideService.updateSlide(slide)
+  }
 }
 /*
   TODO

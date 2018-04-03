@@ -1,6 +1,6 @@
 <div class="controls">
   <button class="control-button" (click)="addHandler()">+</button>
-  <button class="control-button" (click)="toggleEditWindow()">✎</button>
+  <button class="control-button" (click)="toggleEditWindow(true)">✎</button>
 </div>
 
 <div class="glass" *ngIf="isEdit"></div>
@@ -38,7 +38,7 @@
   <div class="edit-container edit-buttons">
     <button
       class="edit-button"
-      type="submit"
+      type="button"
       (click)="saveSlider()"
       [disabled]="slideForm.invalid"
     >

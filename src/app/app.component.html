@@ -1,6 +1,19 @@
 <app-search></app-search>
-<app-controls (addSlide)="onAddSlide($event)" [slide]="slides[currentSlideId - 1]"></app-controls>
-<app-sidebar [currentSlideId]="currentSlideId" [slides]="slides" (onDeleteSlide)="onDeleteSlide($event)"></app-sidebar>
+
+<app-controls
+  (addSlide)="onAddSlide($event)"
+  [slide]="slides[currentSlideId - 1]"
+  (editSlide)="onEditSlide($event)"
+>
+</app-controls>
+
+<app-sidebar
+  [currentSlideId]="currentSlideId"
+  [slides]="slides"
+  (onDeleteSlide)="onDeleteSlide($event)"
+>
+</app-sidebar>
+
 <div class="content">
   <router-outlet></router-outlet>
 </div>
