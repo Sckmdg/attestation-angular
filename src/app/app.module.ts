@@ -15,6 +15,7 @@ import { RootSlideComponent } from './components/root-slide/root-slide.component
 
 import { SlideService } from './services/slide.service';
 import { TemplateDirective } from './directives/template.directive';
+import { ControlsComponent } from './components/controls/controls.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TemplateDirective } from './directives/template.directive';
     SidebarComponent,
     SearchComponent,
     TemplateDirective,
-    RootSlideComponent
+    RootSlideComponent,
+    ControlsComponent
   ],
   imports: [
     BrowserModule,

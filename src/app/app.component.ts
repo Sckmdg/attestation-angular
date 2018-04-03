@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { Slide } from "./components/root-slide/slide";
 import { SlideService } from "./services/slide.service";
 import { Router, RoutesRecognized } from '@angular/router';
@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('init', this);
     this.getSlides();
 
     this.router.events.subscribe((event) => {
@@ -34,7 +33,7 @@ export class AppComponent implements OnInit {
       .subscribe(slides => this.slides = slides);
   }
 
-  onDeleteSlide(slide: Slide):void {
+  onDeleteSlide(slide: Slide): void {
     this.slides = this.slides.filter(h => h !== slide);
     this.slideService.deleteSlide(slide).subscribe();
 
@@ -42,12 +41,25 @@ export class AppComponent implements OnInit {
       this.router.navigate([`/slide/${this.slides[0].id}`]);
     }
   }
+
+  onAddSlide(): void {
+    const newId = this.slides[this.slides.length - 1].id + 1;
+    const defaultSlide = {
+      id: newId,
+      title: `Test${newId}`,
+      template: `<p>test${newId}</p>`
+    };
+
+    this.slideService.addSlide(defaultSlide as Slide)
+      .subscribe(slide => {
+        this.slides.push(slide);
+      });
+  }
 }
 /*
   TODO
-  1) Add slides functional
-  2) Edit slides functional
-  3) Connect additional js lib to project (spinner for example)
-  4) Change styles
-  5) Add info to slides
+  1) Edit slides functional
+  2) Connect additional js lib to project (spinner for example)
+  3) Change styles
+  4) Add info to slides
 */
