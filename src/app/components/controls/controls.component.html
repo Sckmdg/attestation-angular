@@ -3,21 +3,47 @@
   <button class="control-button" (click)="toggleEditWindow()">✎</button>
 </div>
 
-<div class="edit-window" *ngIf="isEdit">
+<div class="glass" *ngIf="isEdit"></div>
+
+<form class="edit-window" *ngIf="isEdit" #slideForm="ngForm">
   <div class="edit-container">
     <label for="edit-slide-title">Title</label>
-    <input class="input-field" type="text" name="title" id="edit-slide-title" value={{slide.title}} required>
+    <input
+      class="input-field"
+      type="text"
+      name="title"
+      id="edit-slide-title"
+      [(ngModel)]="slide.title"
+      required
+      #title="ngModel"
+    >
   </div>
 
   <div class="edit-container">
     <label for="edit-slide-template">Template</label>
-    <textarea class="input-field" id="edit-slide-template" rows="15">
-      {{slide.template}}
+    <textarea
+      class="input-field"
+      id="edit-slide-template"
+      rows="15"
+      [(ngModel)]="slide.template"
+      name="template"
+      #template="ngModel"
+      required
+    >
     </textarea>
   </div>
 
+  <p class="warning" *ngIf="slideForm.invalid">All fields must containt at least 1 symbol</p>
+
   <div class="edit-container edit-buttons">
-    <button class="edit-button">Save</button>
+    <button
+      class="edit-button"
+      type="submit"
+      (click)="saveSlider()"
+      [disabled]="slideForm.invalid"
+    >
+      Save
+    </button>
     <button class="edit-button" (click)="closeEditWindow()">Cancel</button>
   </div>
-</div>
+</form>

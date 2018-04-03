@@ -23,5 +23,9 @@ export class ControlsComponent {
     this.isEdit = false;
   }
 
+  saveSlider(): void {
+    console.log(this);
+  }
+
   constructor() { }
 }
