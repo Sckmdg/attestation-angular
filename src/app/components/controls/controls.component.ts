@@ -11,14 +11,17 @@ export class ControlsComponent implements AfterContentChecked {
   @Output() addSlide: EventEmitter<any> = new EventEmitter();
   @Output() editSlide: EventEmitter<Slide> = new EventEmitter<Slide>();
   isEdit: boolean;
+  isCreatingSlide: boolean;
   slideCopy: Slide;
 
   ngAfterContentChecked(): void {
-    if (!this.slideCopy) this.slideCopy = this.slide
+    if (!this.slideCopy && this.slide) this.slideCopy = Object.assign({}, this.slide);
   }
 
   addHandler(): void {
+    this.isCreatingSlide = true;
     this.addSlide.emit(null);
+    setTimeout(() => this.isCreatingSlide = false, 500);
   }
 
   toggleEditWindow(value: boolean): void {
@@ -27,12 +30,12 @@ export class ControlsComponent implements AfterContentChecked {
 
   closeEditWindow(): void {
     this.toggleEditWindow(false);
-    this.slide = this.slideCopy;
+    this.slide = Object.assign({}, this.slideCopy);
   }
 
   saveSlider(): void {
     this.toggleEditWindow(false);
-    this.slideCopy = this.slide;
+    this.slideCopy = Object.assign({}, this.slide);
     this.editSlide.emit(this.slide);
   }
 

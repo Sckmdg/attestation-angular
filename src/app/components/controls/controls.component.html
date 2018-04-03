@@ -1,9 +1,9 @@
 <div class="controls">
-  <button class="control-button" (click)="addHandler()">+</button>
+  <button class="control-button" (click)="addHandler()" [disabled]="isCreatingSlide">+</button>
   <button class="control-button" (click)="toggleEditWindow(true)">✎</button>
 </div>
 
-<div class="glass" *ngIf="isEdit"></div>
+<div class="glass" *ngIf="isEdit" (click)="closeEditWindow()"></div>
 
 <form class="edit-window" *ngIf="isEdit" #slideForm="ngForm">
   <div class="edit-container">
