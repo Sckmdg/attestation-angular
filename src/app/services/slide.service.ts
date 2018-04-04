@@ -79,8 +79,8 @@ export class SlideService {
     const url = `${this.slidesUrl}/${id}`;
 
     return this.http.get<Slide>(url).pipe(
-      tap(_ => this.log(`fetched slide id=${id}`)),
-      catchError(this.handleError<Slide>(`getSlide id=${id}`)),
+      tap(_ => this.log(`fetched slide id=${id}`))
+      // catchError(this.handleError<Slide>(`getSlide id=${id}`)),
     );
   }
 

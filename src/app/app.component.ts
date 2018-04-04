@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
        this.currentSlideId = Number(event.state.root.firstChild.params.id);
       }
     })
-
   }
 
   getSlides(): void {
@@ -60,10 +59,3 @@ export class AppComponent implements OnInit {
     this.slideService.updateSlide(slide)
   }
 }
-/*
-  TODO
-  1) Edit slides functional
-  2) Connect additional js lib to project (spinner for example)
-  3) Change styles
-  4) Add info to slides
-*/

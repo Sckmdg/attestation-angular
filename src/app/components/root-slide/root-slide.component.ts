@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Slide } from './slide'
 import { SlideService } from '../../services/slide.service';
 
@@ -15,6 +15,7 @@ export class RootSlideComponent implements OnInit, DoCheck {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private slideService: SlideService,
   ) {}
 
@@ -34,7 +35,10 @@ export class RootSlideComponent implements OnInit, DoCheck {
 
   getSlide(): void {
     this.slideService.getSlide(this.currentSlideId)
-      .subscribe(slide => this.slide = slide);
+      .subscribe(
+        slide => this.slide = slide,
+        error => this.router.navigate([`/slide/${this.currentSlideId + 1}`])
+      );
   }
 
   initCurrentSlide(): void {
