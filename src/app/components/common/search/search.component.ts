@@ -39,9 +39,4 @@ export class SearchComponent implements OnInit {
       switchMap((term: string) => this.slideService.searchSlides(term)),
     );
   }
-
-  onFocusLeave(): void {
-    this.focus = false;
-  }
-
 }
