@@ -45,8 +45,8 @@ export class AppComponent implements OnInit {
     const newId = this.slides[this.slides.length - 1].id + 1;
     const defaultSlide = {
       id: newId,
-      title: `Test${newId}`,
-      template: `<p>test${newId}</p>`
+      title: `Slide${newId}`,
+      template: `<p>Slide${newId}</p>`
     };
 
     this.slideService.addSlide(defaultSlide as Slide)
@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
   }
 
   onEditSlide(slide: Slide): void {
-    this.slideService.updateSlide(slide)
+    this.slideService.updateSlide(slide);
+    document.getElementsByClassName('content-slide')[0].innerHTML = slide.template
   }
 }

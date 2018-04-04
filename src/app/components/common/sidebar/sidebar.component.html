@@ -9,7 +9,7 @@
       routerLink="/slide/{{slide.id}}"
     >
       <span class="delete" (click)="deleteHandler(slide)">X</span>
-      {{slide.title}}
+      {{slide.id - 1}}. {{slide.title}}
       <p *ngIf="currentSlideId === slide.id">
         Current Slide
       </p>

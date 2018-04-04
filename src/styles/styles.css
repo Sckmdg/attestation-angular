@@ -15,9 +15,10 @@ body {
 }
 
 .content {
-  margin-left: 170px;
+  margin-left: 215px;
+  margin-top: 70px;
   padding: 25px;
-  width: calc(100% - 220px);
+  width: calc(100% - 475px);
   height: calc(100% - 60px);
 }
 
@@ -52,4 +53,19 @@ body {
   background: url('./img/loader.png') no-repeat;
   background-size: contain;
   animation: square-spin 3s 0s cubic-bezier(.09,.57,.49,.9) infinite;
+}
+
+.center {
+  text-align: center;
+}
+
+.content li {
+  margin-bottom: 5px;
+}
+
+.flex-box {
+  display: flex;
+  align-content: space-around;
+  align-items: center;
+  justify-content: space-around;
 }
