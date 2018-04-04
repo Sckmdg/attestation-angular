@@ -19,22 +19,23 @@ export class RootSlideComponent implements OnInit, DoCheck {
   ) {}
 
   ngOnInit(): void {
-    this.initCurrentSlide();
-    this.getSlide();
+    setTimeout(() => {
+      this.initCurrentSlide();
+      this.getSlide();
+    }, 300)
   }
 
   ngDoCheck(): void {
     const id = this.slideService.getParamFromRoute(this.route, 'id');
 
-    if (id !== this.currentSlideId) {
+    if (this.currentSlideId && id !== this.currentSlideId) {
       this.currentSlideId = id;
       this.getSlide();
     }
   };
 
   getSlide(): void {
-    this.slideService.getSlide(this.currentSlideId)
-      .subscribe(slide => this.slide = slide);
+    this.slide = Object.assign({}, this.slideService.getSlide(this.currentSlideId))
   }
 
   initCurrentSlide(): void {

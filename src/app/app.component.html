@@ -2,7 +2,7 @@
 
 <app-controls
   (addSlide)="onAddSlide($event)"
-  [slide]="slides[currentSlideId - 1]"
+  [slide]="slides && slides[currentSlideId - 1]"
   (editSlide)="onEditSlide($event)"
 >
 </app-controls>
@@ -17,4 +17,4 @@
 <div class="content">
   <router-outlet></router-outlet>
 </div>
-<app-footer [currentSlideId]="currentSlideId" [slides]="slides.length" ></app-footer>
+<app-footer [currentSlideId]="currentSlideId" [slides]="slides && slides.length" ></app-footer>

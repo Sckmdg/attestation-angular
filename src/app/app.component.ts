@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Slide } from "./components/root-slide/slide";
 import { SlideService } from "./services/slide.service";
 import { Router, RoutesRecognized } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router, RoutesRecognized } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   currentSlideId: number;
   slides: Slide[] = [];
 
@@ -22,20 +22,21 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe((event) => {
       if (event instanceof RoutesRecognized) {
-       this.currentSlideId = Number(event.state.root.firstChild.params.id);
+        this.currentSlideId = Number(event.state.root.firstChild.params.id);
       }
     })
+  }
 
+  ngOnDestroy(): void {
+    localStorage.clear();
   }
 
   getSlides(): void {
-    this.slideService.getSlides()
-      .subscribe(slides => this.slides = slides);
+    this.slides = this.slideService.getSlides()
   }
 
   onDeleteSlide(slide: Slide): void {
-    this.slides = this.slides.filter(h => h !== slide);
-    this.slideService.deleteSlide(slide).subscribe();
+    this.slides = this.slideService.deleteSlide(slide);
 
     if (slide.id === this.currentSlideId) {
       this.router.navigate([`/slide/${this.slides[0].id}`]);
@@ -47,13 +48,10 @@ export class AppComponent implements OnInit {
     const defaultSlide = {
       id: newId,
       title: `Test${newId}`,
-      template: `<p>test${newId}</p>`
+      template: `test${newId}`
     };
 
-    this.slideService.addSlide(defaultSlide as Slide)
-      .subscribe(slide => {
-        this.slides.push(slide);
-      });
+    this.slides = this.slideService.addSlide(defaultSlide)
   }
 
   onEditSlide(slide: Slide): void {
@@ -62,7 +60,6 @@ export class AppComponent implements OnInit {
 }
 /*
   TODO
-  1) Edit slides functional
   2) Connect additional js lib to project (spinner for example)
   3) Change styles
   4) Add info to slides

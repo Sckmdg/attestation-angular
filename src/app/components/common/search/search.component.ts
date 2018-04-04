@@ -1,10 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subject }    from 'rxjs/Subject';
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
-
+import { Component } from '@angular/core';
 import { Slide } from "../../root-slide/slide";
 import { SlideService } from "../../../services/slide.service";
 
@@ -13,35 +7,18 @@ import { SlideService } from "../../../services/slide.service";
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
-
-  slides: Observable<Slide[]>;
-  focus: boolean;
-  private searchTerms = new Subject<string>();
+export class SearchComponent {
+  slides: Array<Slide>;
+  searchValue = '';
 
   constructor(private slideService: SlideService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
-    this.focus = true;
-    this.searchTerms.next(term);
+    this.slides = this.slideService.searchSlides(term);
   }
 
-  ngOnInit(): void {
-    this.slides = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
-
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.slideService.searchSlides(term)),
-    );
+  test(): void {
+    this.searchValue = '';
   }
-
-  onFocusLeave(): void {
-    this.focus = false;
-  }
-
 }

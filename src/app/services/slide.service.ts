@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -7,17 +6,67 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Slide } from '../components/root-slide/slide'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable()
 export class SlideService {
+  slides = [
+    {
+      id: 1,
+      title: 'Test1',
+      template: 'test1'
+    },
+    {
+      id: 2,
+      title: 'Test2',
+      template: 'test2'
+    },
+    {
+      id: 3,
+      title: 'Test3',
+      template: 'test3'
+    },
+    {
+      id: 4,
+      title: 'Test4',
+      template: 'test4'
+    },
+    {
+      id: 5,
+      title: 'Test5',
+      template: 'test5'
+    },
+    {
+      id: 6,
+      title: 'Test6',
+      template: 'test6'
+    },
+    {
+      id: 7,
+      title: 'Test7',
+      template: 'test7'
+    },
+    {
+      id: 8,
+      title: 'Test8',
+      template: 'test8'
+    },
+    {
+      id: 9,
+      title: 'Test9',
+      template: 'test9'
+    },
+    {
+      id: 10,
+      title: 'Test10',
+      template: 'test10'
+    },
+    {
+      id: 11,
+      title: 'Test11',
+      template: 'test11'
+    }
+  ];
 
-  private slidesUrl = 'api/slides';  // URL to web api
-
-  constructor(
-    private http: HttpClient) { }
+  constructor() { }
 
   /** Getting param from route */
   public getParamFromRoute (route: any, param: string): number {
@@ -25,63 +74,48 @@ export class SlideService {
   }
 
   /** GET slides from the server */
-  getSlides (): Observable<Slide[]> {
-    return this.http.get<Slide[]>(this.slidesUrl)
-      .pipe(
-        tap(slides => this.log(`fetched slides`)),
-        catchError(this.handleError('getSlides', []))
-      );
+  getSlides (): Array<Slide> {
+    return this.slides
   }
 
   //////// Save methods //////////
 
   /** POST: add a new slide to the server */
-  addSlide (slide: Slide): Observable<Slide> {
-    return this.http.post<Slide>(this.slidesUrl, slide, httpOptions).pipe(
-      tap((slide: Slide) => this.log(`added slide w/ id=${slide.id}`)),
-      catchError(this.handleError<Slide>('addSlide'))
-    );
+  addSlide (slide: Slide): Array<Slide> {
+    this.slides.push(slide);
+    return this.slides
   }
 
+  // TODO Check this method
   /** DELETE: delete the slide from the server */
-  deleteSlide (slide: Slide | number): Observable<Slide> {
-    const id = typeof slide === 'number' ? slide : slide.id;
-    const url = `${this.slidesUrl}/${id}`;
-
-    return this.http.delete<Slide>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted slide id=${id}`)),
-      catchError(this.handleError<Slide>('deleteSlide'))
-    );
+  deleteSlide (slide: Slide | number): Array<Slide> {
+    this.slides.filter(h => h !== slide);
+    return this.slides;
   }
 
   /** PUT: update the slide on the server */
-  updateSlide (slide: Slide): Observable<any> {
-    return this.http.put(this.slidesUrl, slide, httpOptions).pipe(
-      tap(_ => this.log(`updated slide id=${slide.id}`)),
-      catchError(this.handleError<any>('updateSlide'))
-    );
+  updateSlide (slide: Slide): Array<Slide> {
+    const id = typeof slide === 'number' ? slide : slide.id;
+    this.slides[id - 1] = slide;
+
+    return this.slides
   }
 
   /* GET slides whose name contains search term */
-  searchSlides(term: string): Observable<Slide[]> {
-    if (!term.trim()) {
-      // if not search term, return empty slide array.
-      return of([]);
-    }
-    return this.http.get<Slide[]>(`api/slides/?title=${term}`).pipe(
-      tap(_ => this.log(`found slides matching "${term}"`)),
-      catchError(this.handleError<Slide[]>('searchSlides', []))
-    );
+  searchSlides(term: string): Array<Slide> {
+    const searchSlides = [];
+    this.slides.map(slide => {
+      if (slide.title.toLowerCase().includes(term.toLowerCase())) {
+        searchSlides.push(slide)
+      }
+    });
+
+    return searchSlides
   }
 
   /** GET slide by id. Return `undefined` when id not found */
-  getSlide(id: number): Observable<Slide> {
-    const url = `${this.slidesUrl}/${id}`;
-
-    return this.http.get<Slide>(url).pipe(
-      tap(_ => this.log(`fetched slide id=${id}`)),
-      catchError(this.handleError<Slide>(`getSlide id=${id}`)),
-    );
+  getSlide(id: number): Slide {
+    if (this.slides) return this.slides[id - 1]
   }
 
   /**
