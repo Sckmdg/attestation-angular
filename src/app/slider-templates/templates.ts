@@ -55,56 +55,43 @@ const templates = [
   <p>Теперь в качестве сахара надо писать <b>*</b></p>
   <br>
   <p>Чтобы было так:</p>
-  <pre>
-    <code>
-       &lt;div *ngIf="hero" class="name"&gt;{{hero.name}}&lt;/div&gt;
-    </code>
-  </pre>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>div <span style="color:#00f">*</span>ngIf<span style="color:#00f">=</span><span style="color:#093">"hero"</span> <span style="font-weight:700">class</span><span style="color:#00f">=</span><span style="color:#093">"name"</span><span style="color:#00f">></span>{{hero.name}}<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span></pre>
     <p>А не так:</p>
-  <pre>
-    <code>
-      &lt;ng-template [ngIf]="hero"&gt;
-        &lt;div class="name">{{hero.name}}&lt;/div&gt;
-      &lt;/ng-template&gt;
-    </code>
-  </pre>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>ng<span style="color:#00f">-</span>template [ngIf]<span style="color:#00f">=</span><span style="color:#093">"hero"</span><span style="color:#00f">></span>
+  <span style="color:#00f">&lt;</span>div <span style="font-weight:700">class</span><span style="color:#00f">=</span><span style="color:#093">"name"</span><span style="color:#00f">></span>{{hero.name}}<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span>
+<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>ng<span style="color:#00f">-</span>template<span style="color:#00f">></span>
+</pre>
 </div>
 
 <p>Подумаешь, всё дело в [ ] ан нет. Вот как это выглядит:</p>
-<pre>
-  <code>
-    &lt;div *ngFor="let hero of heroes; let i=index; let odd=odd; trackBy: trackById" [class.odd]="odd"&gt;
-      ({{i}}) {{hero.name}}
-    &lt;/div&gt;
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>div <span style="color:#00f">*</span>ngFor<span style="color:#00f">=</span><span style="color:#093">"let hero of heroes; let i=index; let odd=odd; trackBy: trackById"</span> [<span style="font-weight:700">class</span>.odd]<span style="color:#00f">=</span><span style="color:#093">"odd"</span><span style="color:#00f">></span>
+  ({{i}}) {{hero.name}}
+<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span>
 
-    &lt;ng-template ngFor let-hero [ngForOf]="heroes" let-i="index" let-odd="odd" [ngForTrackBy]="trackById"&gt;
-      &lt;div [class.odd]="odd"&gt;({{i}}) {{hero.name}}&lt;/div&gt;
-    &lt;/ng-template&gt;
-  </code>
+<span style="color:#00f">&lt;</span>ng<span style="color:#00f">-</span>template ngFor let<span style="color:#00f">-</span>hero [ngForOf]<span style="color:#00f">=</span><span style="color:#093">"heroes"</span> let<span style="color:#00f">-</span>i<span style="color:#00f">=</span><span style="color:#093">"index"</span> let<span style="color:#00f">-</span>odd<span style="color:#00f">=</span><span style="color:#093">"odd"</span> [ngForTrackBy]<span style="color:#00f">=</span><span style="color:#093">"trackById"</span><span style="color:#00f">></span>
+  <span style="color:#00f">&lt;</span>div [<span style="font-weight:700">class</span>.odd]<span style="color:#00f">=</span><span style="color:#093">"odd"</span><span style="color:#00f">></span>({{i}}) {{hero.name}}<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span>
+<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>ng<span style="color:#00f">-</span>template<span style="color:#00f">></span>
 </pre>
 
 <p>Но на самом деле всё куда менее страшней. Пример кода, для отображения слайдов слева:</p>
-<pre>
-  <code>
-&lt;div class="sidebar"&gt;
-  &lt;ul class="slides-container" *ngIf="slides"&gt;
-    &lt;li
-      *ngFor="let slide of slides"
-      [ngClass]="{
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>div <span style="font-weight:700">class</span><span style="color:#00f">=</span><span style="color:#093">"sidebar"</span><span style="color:#00f">></span>
+  <span style="color:#00f">&lt;</span>ul <span style="font-weight:700">class</span><span style="color:#00f">=</span><span style="color:#093">"slides-container"</span> <span style="color:#00f">*</span>ngIf<span style="color:#00f">=</span><span style="color:#093">"slides"</span><span style="color:#00f">></span>
+    <span style="color:#00f">&lt;</span>li
+      <span style="color:#00f">*</span>ngFor<span style="color:#00f">=</span><span style="color:#093">"let slide of slides"</span>
+      [ngClass]<span style="color:#00f">=</span><span style="color:#093">"{
       'slide':true,
       'slide--current':currentSlideId === slide.id
-      }"
-      routerLink="/slide/{{slide.id}}"
-    &gt;
-      &lt;span class="delete" (click)="deleteHandler(slide)"&gt;X&lt;/span&gt;
-      {{slide.id - 1}}. {{slide.title}}
-      &lt;p *ngIf="currentSlideId === slide.id"&gt;
+      }"</span>
+      routerLink<span style="color:#00f">=</span><span style="color:#093">"/slide/{{slide.id}}"</span>
+    <span style="color:#00f">></span>
+      <span style="color:#00f">&lt;</span>span <span style="font-weight:700">class</span><span style="color:#00f">=</span><span style="color:#093">"delete"</span> (click)<span style="color:#00f">=</span><span style="color:#093">"deleteHandler(slide)"</span><span style="color:#00f">></span>X<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>span<span style="color:#00f">></span>
+      {{slide.id <span style="color:#00f">-</span> <span style="color:#06f">1</span>}}. {{slide.title}}
+      <span style="color:#00f">&lt;</span>p <span style="color:#00f">*</span>ngIf<span style="color:#00f">=</span><span style="color:#093">"currentSlideId === slide.id"</span><span style="color:#00f">></span>
         Current Slide
-      &lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-  </code>
+      <span style="color:#00f">&lt;</span><span style="color:#00f">/</span>p<span style="color:#00f">></span>
+    <span style="color:#00f">&lt;</span><span style="color:#00f">/</span>li<span style="color:#00f">></span>
+  <span style="color:#00f">&lt;</span><span style="color:#00f">/</span>ul<span style="color:#00f">></span>
+<span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span>
 </pre>
 <br>
 <p>Если же надо передать что-то компоненту:</p>

@@ -74,3 +74,7 @@ body {
 .mb20 {
   margin-bottom: 20px;
 }
+
+pre {
+  padding: 4px;
+}
