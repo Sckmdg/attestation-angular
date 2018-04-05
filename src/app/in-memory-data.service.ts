@@ -18,6 +18,26 @@ export class InMemoryDataService implements InMemoryDbService {
         id: 3,
         title: 'Возможности',
         template: getTemplate(2)
+      },
+      {
+        id: 4,
+        title: 'Приложение',
+        template: getTemplate(3)
+      },
+      {
+        id: 5,
+        title: 'Проблемы',
+        template: getTemplate(4)
+      },
+      {
+        id: 6,
+        title: '+ и -',
+        template: getTemplate(5)
+      },
+      {
+        id: 7,
+        title: 'Выводы',
+        template: getTemplate(6)
       }
     ];
     return {slides};
