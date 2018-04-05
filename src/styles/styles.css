@@ -17,6 +17,7 @@ body {
 .content {
   margin-left: 215px;
   margin-top: 70px;
+  margin-bottom: 60px;
   padding: 25px;
   width: calc(100% - 475px);
   height: calc(100% - 60px);
@@ -68,4 +69,8 @@ body {
   align-content: space-around;
   align-items: center;
   justify-content: space-around;
+}
+
+.mb20 {
+  margin-bottom: 20px;
 }
