@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Slide } from "./components/root-slide/slide";
 import { SlideService } from "./services/slide.service";
 import { Router, RoutesRecognized } from '@angular/router';

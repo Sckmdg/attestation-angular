@@ -11,27 +11,60 @@ const templates = [
   <br>
   <ol>
     <li>О фреймворке</li>
-    <li>Возможности фреймворка
+    <li>Возможности
       <ol>
         <li>CLI</li>
         <li>Наследие первого ангулара</li>
-        <li>Новые фишечки</li>
+        <li>Новые фишки</li>
       </ol>
     </li>
     <li>Описание данного приложения</li>
-    <li>Проблемы с которыми столкнулся</li>
-    <li>Вкусности и не очень от использования ангулара</li>
-    <li>Где и как его следует применять</li>
+    <li>Проблемы с которыми столкнулся
+      <ol>
+        <li>HttpClientInMemoryWebApiModule</li>
+        <li>Роутинг</li>
+        <li>Динамический шаблон</li>
+      </ol>
+    </li>
+    <li>+ и -</li>
+    <li>Итоги</li>
   </ol>`,
 
   /** First Slide*/
-  `<div class="center flex-box">
+  `<div class="center flex-box mb20">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/1_grk7btEn0OJEQRKgG2Qs2A.png?raw=true" width="250" alt="">
-  <br>
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/angular-pyramid-alpha.png?raw=true" width="250" alt="">
-  <br>
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/sencha-extjs.png?raw=true" width="350" alt="">
-  </div>`,
+</div>
+<br>
+<h1 class="center">Как это всё связано</h1>
+<br>
+<h2>app.module.ts</h2>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/mother.jpeg?raw=true" alt="">
+</div>
+<h2>Сервисы</h2>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/logic.png?raw=true" alt="">
+</div>
+
+<h2>Сам компонент</h1>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/component.jpeg?raw=true" alt="">
+</div>
+<h2>Стили</h1>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/css.png?raw=true" alt="">
+</div>
+<h2>Тесты</h1>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/tester.jpeg?raw=true" alt="">
+</div>
+
+<h2>Как я вижу выпуск новых версий</h2>
+<div class="center flex-box">
+<img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/sonic.gif?raw=true" alt="">
+</div>`,
 
   /** Second Slide*/
   `<h1>Когда прочел всю документацию</h1>
@@ -94,9 +127,63 @@ const templates = [
 <span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span>
 </pre>
 <br>
+<p>Так кстати two-way binding выглядит <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>input [(ngModel)]<span style="color:#00f">=</span><span style="color:#093">"currentHero.name"</span><span style="color:#00f">></span>
+</pre></p>
+<h1>Передача данных из|в компонент(а)</h1>
 <p>Если же надо передать что-то компоненту:</p>
 <p>[testProp]=”Something”</p>
 <p>Внутри компонента @Input() testProp: string;</p>
+<br>
+<p>Также стоит упомянуть Output. К примеру у нас есть массив слайдов и мы хотим удалить 1 из них. Вызвав при этом метод из другого компонента. Как это будет выглядеть в данном случае.
+</p>
+<p>Наш метод удаления:</p>
+<pre style="background:rgba(238,238,238,0.92);color:#000">  onDeleteSlide(slide: Slide): <span style="font-weight:700">void</span> {
+    this.slides <span style="color:#00f">=</span> this.slides.filter(h <span style="color:#00f">=</span><span style="color:#00f">></span> h <span style="color:#00f">!</span><span style="color:#00f">==</span> slide);
+    this.slideService.deleteSlide(slide).subscribe();
+
+    <span style="color:#00f">if</span> (slide.<span style="color:#6782d3">id</span> <span style="color:#00f">===</span> this.currentSlideId) {
+      this.router.<span style="color:#33f;font-weight:700">navigate</span>([\`/slide/<span style="color:#00f">$</span>{this.slides[<span style="color:#06f">0</span>].<span style="color:#6782d3">id</span>}\`]);
+    }
+  }
+
+</pre>
+<br>
+<p>Передаем его в компонент app-sidebar</p>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>app<span style="color:#00f">-</span>sidebar
+  [currentSlideId]<span style="color:#00f">=</span><span style="color:#093">"currentSlideId"</span>
+  [slides]<span style="color:#00f">=</span><span style="color:#093">"slides"</span>
+  (onDeleteSlide)<span style="color:#00f">=</span><span style="color:#093">"onDeleteSlide($event)"</span> <span style="color:#06f;font-style:italic">// It’s me!</span>
+<span style="color:#00f">></span>
+<span style="color:#00f">&lt;</span>/app<span style="color:#00f">-</span>sidebar<span style="color:#00f">></span>
+
+</pre>
+<p>Сам сайдбар:</p>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Component, EventEmitter, Input, Output } from <span style="color:#093">'@angular/core'</span>;
+<span style="color:#00f">import</span> { Slide } from <span style="color:#093">"../../root-slide/slide"</span>;
+
+@Component({
+  selector: <span style="color:#093">'app-sidebar'</span>,
+  templateUrl: <span style="color:#093">'./sidebar.component.html'</span>,
+  styleUrls: [<span style="color:#093">'./sidebar.component.css'</span>]
+})
+<span style="font-weight:700">export</span> <span style="font-weight:700">class</span> SidebarComponent {
+  @Input() currentSlideId: number;
+  @Input() slides: Slide[];
+  @Output() onDeleteSlide: EventEmitter<span style="color:#00f">&lt;</span>Slide<span style="color:#00f">></span> <span style="color:#00f">=</span> <span style="color:#00f">new</span> <span style="">EventEmitter</span><span style="color:#00f">&lt;</span>Slide<span style="color:#00f">></span>();
+
+  deleteHandler(slide: Slide): <span style="font-weight:700">void</span> {
+    this.onDeleteSlide.emit(slide);
+  }
+
+  constructor() {}
+}
+
+</pre>
+<p>и в темплейте добавляем функцию на клик</p>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>span <span style="font-weight:700">class</span><span style="color:#00f">=</span><span style="color:#093">"delete"</span> (click)<span style="color:#00f">=</span><span style="color:#093">"deleteHandler(slide)"</span><span style="color:#00f">></span>X<span style="color:#00f">&lt;</span>/span<span style="color:#00f">></span>
+
+</pre>
+<p>По сути так и работают кастомные и не очень директивы - в них передаем какое бы то ни было свойство и внутри происходит магия. Если это кастомная директива, то просто в app.module.ts подключается (ага, cli всё за нас сделает) всё добро и можем юзать это где угодно.</p>
 <br>
 <h1>Новые фишки</h1>
 <ul>
