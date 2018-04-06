@@ -226,6 +226,163 @@ const templates = [
   <span style="color:#093"><span style="font-weight:700">title:</span> <span style="color:#093">string;</span></span>
   <span style="color:#093"><span style="font-weight:700">template:</span> <span style="color:#093">string;</span></span>
 }
+</pre>
+
+<p>Динамика рулит, е</p>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/dynamic.gif?raw=true" alt="">
+</div>
+
+<p>Структура моего маленького проекта</p>
+<div class="center flex-box mb20">
+  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/structure.png?raw=true" alt="">
+</div>
+
+<h2>Директива</h2>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Directive, ElementRef, Input, OnInit, OnChanges } from <span style="color:#093">'@angular/core'</span>;
+
+@Directive({
+  selector: <span style="color:#093">'[appTemplate]'</span>
+})
+<span style="font-weight:700">export</span> <span style="font-weight:700">class</span> TemplateDirective <span style="font-weight:700">implements</span> OnInit, OnChanges{
+  @Input(<span style="color:#093">'appTemplate'</span>) template: string;
+
+  constructor(
+    <span style="font-weight:700">private</span> el: ElementRef) { }
+
+  ngOnInit(): <span style="font-weight:700">void</span> {
+    this.changeTemplate()
+  }
+
+  changeTemplate() :<span style="font-weight:700">void</span> {
+    this.el.nativeElement.innerHTML <span style="color:#00f">=</span> this.template
+  }
+
+  ngOnChanges(changes: any) {
+    <span style="color:#00f">if</span> (changes.template.previousValue <span style="color:#00f">&amp;</span><span style="color:#00f">&amp;</span> changes.template.currentValue <span style="color:#00f">!</span><span style="color:#00f">==</span> changes.template.previousValue) {
+      this.changeTemplate()
+    }
+  }
+}
+
+</pre>
+
+<h2>app.component.ts</h2>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Component, OnInit } from <span style="color:#093">'@angular/core'</span>;
+<span style="color:#00f">import</span> { Slide } from <span style="color:#093">"./components/root-slide/slide"</span>;
+<span style="color:#00f">import</span> { SlideService } from <span style="color:#093">"./services/slide.service"</span>;
+<span style="color:#00f">import</span> { Router, RoutesRecognized } from <span style="color:#093">'@angular/router'</span>;
+
+@Component({
+  selector: <span style="color:#093">'app-root'</span>,
+  templateUrl: <span style="color:#093">'./app.component.html'</span>,
+  styleUrls: [<span style="color:#093">'./app.component.css'</span>]
+})
+<span style="font-weight:700">export</span> <span style="font-weight:700">class</span> AppComponent <span style="font-weight:700">implements</span> OnInit {
+  currentSlideId: number;
+  slides: Slide[] <span style="color:#00f">=</span> [];
+
+  constructor(
+    <span style="font-weight:700">private</span> router: Router,
+    <span style="font-weight:700">private</span> slideService: SlideService
+  ) {}
+
+  ngOnInit(): <span style="font-weight:700">void</span> {
+    this.getSlides();
+
+    this.router.events.subscribe((<span style="color:#33f;font-weight:700">event</span>) <span style="color:#00f">=</span><span style="color:#00f">></span> {
+      <span style="color:#00f">if</span> (<span style="color:#33f;font-weight:700">event</span> <span style="color:#00f">instanceof</span> RoutesRecognized) {
+       this.currentSlideId <span style="color:#00f">=</span> <span style="color:#33f;font-weight:700">Number</span>(<span style="color:#33f;font-weight:700">event</span>.state.root.<span style="color:#6782d3">firstChild</span>.params.<span style="color:#6782d3">id</span>);
+      }
+    })
+  }
+
+  getSlides(): <span style="font-weight:700">void</span> {
+    this.slideService.getSlides()
+      .subscribe(slides <span style="color:#00f">=</span><span style="color:#00f">></span> this.slides <span style="color:#00f">=</span> slides);
+  }
+
+  onDeleteSlide(slide: Slide): <span style="font-weight:700">void</span> {
+    this.slides <span style="color:#00f">=</span> this.slides.filter(h <span style="color:#00f">=</span><span style="color:#00f">></span> h <span style="color:#00f">!</span><span style="color:#00f">==</span> slide);
+    this.slideService.deleteSlide(slide).subscribe();
+
+    <span style="color:#00f">if</span> (slide.<span style="color:#6782d3">id</span> <span style="color:#00f">===</span> this.currentSlideId) {
+      this.router.<span style="color:#33f;font-weight:700">navigate</span>([\`/slide/<span style="color:#00f">$</span>{this.slides[<span style="color:#06f">0</span>].<span style="color:#6782d3">id</span>}\`]);
+    }
+  }
+
+  onAddSlide(): <span style="font-weight:700">void</span> {
+    <span style="font-weight:700">const</span> newId <span style="color:#00f">=</span> this.slides[this.slides.<span style="color:#6782d3">length</span> <span style="color:#00f">-</span> <span style="color:#06f">1</span>].<span style="color:#6782d3">id</span> <span style="color:#00f">+</span> <span style="color:#06f">1</span>;
+    <span style="font-weight:700">const</span> defaultSlide <span style="color:#00f">=</span> {
+      id: newId,
+      title: \`Slide<span style="color:#00f">$</span>{newId}\`,
+      template: \`<span style="color:#00f">&lt;</span>p<span style="color:#00f">></span>Slide<span style="color:#00f">$</span>{newId}<span style="color:#00f">&lt;</span>/p<span style="color:#00f">></span>\`
+    };
+
+    this.slideService.addSlide(defaultSlide as Slide)
+      .subscribe(slide <span style="color:#00f">=</span><span style="color:#00f">></span> {
+        this.slides.<span style="color:#33f;font-weight:700">push</span>(slide);
+      });
+  }
+
+  onEditSlide(slide: Slide): <span style="font-weight:700">void</span> {
+    this.slideService.updateSlide(slide);
+    <span style="color:#33f;font-weight:700">document</span>.getElementsByClassName(<span style="color:#093">'content-slide'</span>)[<span style="color:#06f">0</span>].innerHTML <span style="color:#00f">=</span> slide.template
+  }
+}
+
+</pre>
+
+<h2>root-slide</h2>
+<pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Component, OnInit, Input, DoCheck } from <span style="color:#093">'@angular/core'</span>;
+<span style="color:#00f">import</span> { ActivatedRoute, Router } from <span style="color:#093">'@angular/router'</span>;
+<span style="color:#00f">import</span> { Slide } from <span style="color:#093">'./slide'</span>
+<span style="color:#00f">import</span> { SlideService } from <span style="color:#093">'../../services/slide.service'</span>;
+
+@Component({
+  selector: <span style="color:#093">'app-slide'</span>,
+  templateUrl: <span style="color:#093">'./root-slide.component.html'</span>,
+  styleUrls: [<span style="color:#093">'./root-slide.component.css'</span>]
+})
+
+<span style="font-weight:700">export</span> <span style="font-weight:700">class</span> RootSlideComponent <span style="font-weight:700">implements</span> OnInit, DoCheck {
+  currentSlideId: number;
+  @Input() slide: Slide;
+
+  constructor(
+    <span style="font-weight:700">private</span> route: ActivatedRoute,
+    <span style="font-weight:700">private</span> router: Router,
+    <span style="font-weight:700">private</span> slideService: SlideService,
+  ) {}
+
+  ngOnInit(): <span style="font-weight:700">void</span> {
+    this.initCurrentSlide();
+    this.getSlide();
+  }
+
+  ngDoCheck(): <span style="font-weight:700">void</span> {
+    <span style="font-weight:700">const</span> id <span style="color:#00f">=</span> this.slideService.getParamFromRoute(this.route, <span style="color:#093">'id'</span>);
+
+    <span style="color:#00f">if</span> (id <span style="color:#00f">!</span><span style="color:#00f">==</span> this.currentSlideId) {
+      this.currentSlideId <span style="color:#00f">=</span> id;
+      this.getSlide();
+    }
+  };
+
+  getSlide(): <span style="font-weight:700">void</span> {
+    this.slideService.getSlide(this.currentSlideId)
+      .subscribe(
+        slide <span style="color:#00f">=</span><span style="color:#00f">></span> this.slide <span style="color:#00f">=</span> slide,
+        error <span style="color:#00f">=</span><span style="color:#00f">></span> this.router.<span style="color:#33f;font-weight:700">navigate</span>([\`/slide/<span style="color:#00f">$</span>{this.currentSlideId <span style="color:#00f">+</span> <span style="color:#06f">1</span>}\`])
+      );
+  }
+
+  initCurrentSlide(): <span style="font-weight:700">void</span> {
+    this.currentSlideId <span style="color:#00f">=</span> this.slideService.getParamFromRoute(this.route, <span style="color:#093">'id'</span>);
+  }
+
+}
+
 </pre>`,
 
   /** Fourth Slide*/

@@ -14,7 +14,8 @@ export class TemplateDirective implements OnInit, OnChanges{
   }
 
   changeTemplate() :void {
-    this.el.nativeElement.innerHTML = this.template
+    window.scrollTo(0, 0);
+    this.el.nativeElement.innerHTML = this.template;
   }
 
   ngOnChanges(changes: any) {
