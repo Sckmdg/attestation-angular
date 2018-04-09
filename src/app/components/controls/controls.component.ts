@@ -1,5 +1,5 @@
 import {AfterContentChecked, Component, EventEmitter, Input, Output} from '@angular/core';
-import { Slide } from "../root-slide/slide";
+import { Slide } from '../root-slide/slide';
 
 @Component({
   selector: 'app-controls',
@@ -15,7 +15,9 @@ export class ControlsComponent implements AfterContentChecked {
   slideCopy: Slide;
 
   ngAfterContentChecked(): void {
-    if (!this.slideCopy && this.slide) this.slideCopy = Object.assign({}, this.slide);
+    if (!this.slideCopy && this.slide) {
+      this.slideCopy = Object.assign({}, this.slide);
+    }
   }
 
   addHandler(): void {
@@ -25,7 +27,7 @@ export class ControlsComponent implements AfterContentChecked {
   }
 
   toggleEditWindow(value: boolean): void {
-    this.isEdit = value
+    this.isEdit = value;
   }
 
   closeEditWindow(): void {

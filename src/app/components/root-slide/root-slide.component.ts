@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Slide } from './slide'
+import { Slide } from './slide';
 import { SlideService } from '../../services/slide.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class RootSlideComponent implements OnInit, DoCheck {
       this.currentSlideId = id;
       this.getSlide();
     }
-  };
+  }
 
   getSlide(): void {
     this.slideService.getSlide(this.currentSlideId)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Slide } from "./components/root-slide/slide";
-import { SlideService } from "./services/slide.service";
+import { Slide } from './components/root-slide/slide';
+import { SlideService } from './services/slide.service';
 import { Router, RoutesRecognized } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
       if (event instanceof RoutesRecognized) {
        this.currentSlideId = Number(event.state.root.firstChild.params.id);
       }
-    })
+    });
   }
 
   getSlides(): void {
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
       .subscribe(slides => this.slides = slides);
   }
 
-  onDeleteSlide(slide: Slide): void {
+  deleteSlide(slide: Slide): void {
     this.slides = this.slides.filter(h => h !== slide);
     this.slideService.deleteSlide(slide).subscribe();
 
@@ -57,6 +57,6 @@ export class AppComponent implements OnInit {
 
   onEditSlide(slide: Slide): void {
     this.slideService.updateSlide(slide);
-    document.getElementsByClassName('content-slide')[0].innerHTML = slide.template
+    document.getElementsByClassName('content-slide')[0].innerHTML = slide.template;
   }
 }

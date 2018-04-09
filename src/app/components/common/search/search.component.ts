@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject }    from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 
-import { Slide } from "../../root-slide/slide";
-import { SlideService } from "../../../services/slide.service";
+import { Slide } from '../../root-slide/slide';
+import { SlideService } from '../../../services/slide.service';
 
 @Component({
   selector: 'app-search',

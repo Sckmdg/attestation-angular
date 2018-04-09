@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Slide } from "../../root-slide/slide";
+import { Slide } from '../../root-slide/slide';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,10 +9,10 @@ import { Slide } from "../../root-slide/slide";
 export class SidebarComponent {
   @Input() currentSlideId: number;
   @Input() slides: Slide[];
-  @Output() onDeleteSlide: EventEmitter<Slide> = new EventEmitter<Slide>();
+  @Output() deleteSlide: EventEmitter<Slide> = new EventEmitter<Slide>();
 
   deleteHandler(slide: Slide): void {
-    this.onDeleteSlide.emit(slide);
+    this.deleteSlide.emit(slide);
   }
 
   constructor() {}

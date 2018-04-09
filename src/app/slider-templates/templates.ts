@@ -500,6 +500,6 @@ const templates = [
 
 
 export const getTemplate = function (value) {
-  return templates[value]
+  return templates[value];
 };
 

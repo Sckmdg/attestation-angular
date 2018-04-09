@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { getTemplate } from './slider-templates/templates'
+import { getTemplate } from './slider-templates/templates';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {

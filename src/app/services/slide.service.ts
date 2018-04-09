@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
-import { Slide } from '../components/root-slide/slide'
+import { Slide } from '../components/root-slide/slide';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,7 +21,7 @@ export class SlideService {
 
   /** Getting param from route */
   public getParamFromRoute (route: any, param: string): number {
-    return param === 'id' ? +route.snapshot.paramMap.get(param) : route.snapshot.paramMap.get(param)
+    return param === 'id' ? +route.snapshot.paramMap.get(param) : route.snapshot.paramMap.get(param);
   }
 
   /** GET slides from the server */
@@ -38,7 +38,7 @@ export class SlideService {
   /** POST: add a new slide to the server */
   addSlide (slide: Slide): Observable<Slide> {
     return this.http.post<Slide>(this.slidesUrl, slide, httpOptions).pipe(
-      tap((slide: Slide) => this.log(`added slide w/ id=${slide.id}`)),
+      tap((nextSlide: Slide) => this.log(`added slide w/ id=${nextSlide.id}`)),
       catchError(this.handleError<Slide>('addSlide'))
     );
   }
