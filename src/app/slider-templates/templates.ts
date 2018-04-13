@@ -10,6 +10,7 @@ const templates = [
   </div>
   <br>
   <ol>
+    <li>План</li>
     <li>О фреймворке</li>
     <li>Возможности
       <ol>
@@ -83,10 +84,9 @@ const templates = [
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/cli.png?raw=true" alt="">
 </div>
 <br>
-<a target="_blank" class="mb20" href="https://github.com/angular/angular-cli/wiki">Ссылочка на эту красоту</a>
-<br>
-<br>
-<div>
+<a target="_blank" class="mb20" href="https://github.com/angular/angular-cli/wiki">Ссылочка на эту красоту</a>`,
+  /** Third Slide*/
+  `<div>
   <h1>Наследие первого ангулара</h1>
   <p>Теперь в качестве сахара перед директивами надо писать <b>*</b></p>
   <br>
@@ -129,10 +129,11 @@ const templates = [
   <span style="color:#00f">&lt;</span><span style="color:#00f">/</span>ul<span style="color:#00f">></span>
 <span style="color:#00f">&lt;</span><span style="color:#00f">/</span>div<span style="color:#00f">></span>
 </pre>
-<br>
-<p>Так кстати two-way binding выглядит <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>input [(ngModel)]<span style="color:#00f">=</span><span style="color:#093">"currentHero.name"</span><span style="color:#00f">></span>
+<br>`,
+  /** Fourth Slide*/
+  `<h1>Передача данных из|в компонент(а)</h1>
+<p>Two-way data binding выглядит так <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">&lt;</span>input [(ngModel)]<span style="color:#00f">=</span><span style="color:#093">"currentHero.name"</span><span style="color:#00f">></span>
 </pre></p>
-<h1>Передача данных из|в компонент(а)</h1>
 <p>Если же надо передать что-то компоненту:</p>
 <p>[testProp]=”Something”</p>
 <p>Внутри компонента @Input() testProp: string;</p>
@@ -187,8 +188,10 @@ const templates = [
 
 </pre>
 <p>По сути так и работают кастомные и не очень директивы - в них передаем какое бы то ни было свойство и внутри происходит магия. Если это кастомная директива, то просто в app.module.ts подключается (ага, cli всё за нас сделает) всё добро и можем юзать это где угодно.</p>
-<br>
-<h1>Новые фишки</h1>
+<br>`,
+
+  /** Five Slide*/
+  `<h1>Новые фишки</h1>
 <ul>
   <li>Pipes. Позволяют трансформировать string в upperCase и ему подобные, числа и даты в нужный формат. <br>Пример: {{  someDate | date:'fullDate' | uppercase}}
   </li>
@@ -206,7 +209,7 @@ const templates = [
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/angular%20forms.png?raw=true" width="350" alt="">
 </div>`,
 
-  /** Third Slide*/
+  /** Sixth Slide*/
   `<div class="center flex-box mb20">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/super-man.png?raw=true" width="350" alt="">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE.jpg?raw=true" width="350" alt="">
@@ -231,17 +234,12 @@ const templates = [
 }
 </pre>
 
-<p>Динамика рулит, е</p>
-<div class="center flex-box mb20">
-  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/dynamic.gif?raw=true" alt="">
-</div>
-
 <p>Структура моего маленького проекта</p>
 <div class="center flex-box mb20">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/structure.png?raw=true" alt="">
-</div>
+</div>`,
 
-<h2>Директива</h2>
+`<h2>Директива</h2>
 <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Directive, ElementRef, Input, OnInit, OnChanges } from <span style="color:#093">'@angular/core'</span>;
 
 @Directive({
@@ -268,9 +266,9 @@ const templates = [
   }
 }
 
-</pre>
+</pre>`,
 
-<h2>app.component.ts</h2>
+ `<h2>app.component.ts</h2>
 <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Component, OnInit } from <span style="color:#093">'@angular/core'</span>;
 <span style="color:#00f">import</span> { Slide } from <span style="color:#093">"./components/root-slide/slide"</span>;
 <span style="color:#00f">import</span> { SlideService } from <span style="color:#093">"./services/slide.service"</span>;
@@ -334,9 +332,9 @@ const templates = [
   }
 }
 
-</pre>
+</pre>`,
 
-<h2>root-slide</h2>
+`<h2>root-slide</h2>
 <pre style="background:rgba(238,238,238,0.92);color:#000"><span style="color:#00f">import</span> { Component, OnInit, Input, DoCheck } from <span style="color:#093">'@angular/core'</span>;
 <span style="color:#00f">import</span> { ActivatedRoute, Router } from <span style="color:#093">'@angular/router'</span>;
 <span style="color:#00f">import</span> { Slide } from <span style="color:#093">'./slide'</span>
@@ -388,7 +386,7 @@ const templates = [
 
 </pre>`,
 
-  /** Fourth Slide*/
+  /** Seventh Slide*/
   `<h1>HttpClientInMemoryWebApiModule</h1>
 <div class="center flex-box">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/httpweb.png?raw=true" width="700" alt="">
@@ -465,7 +463,7 @@ const templates = [
 
 </pre>`,
 
-  /** Fifth Slide*/
+  /** Eight Slide*/
   `<h1>+</h1>
 <ul>
   <li>Удобнейшая CLI</li>
@@ -492,7 +490,7 @@ const templates = [
   </li>
 </ul>`,
 
-  /** Sixth Slide*/
+  /** Ninth Slide*/
   `<div class="center flex-box">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/real.png?raw=true" alt="">
 </div>`

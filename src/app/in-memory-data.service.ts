@@ -21,23 +21,53 @@ export class InMemoryDataService implements InMemoryDbService {
       },
       {
         id: 4,
-        title: 'Приложение',
+        title: 'Наследие',
         template: getTemplate(3)
       },
       {
         id: 5,
-        title: 'Проблемы',
+        title: 'Передача данных',
         template: getTemplate(4)
       },
       {
         id: 6,
-        title: '+ и -',
+        title: 'Новые фишки',
         template: getTemplate(5)
       },
       {
         id: 7,
-        title: 'Выводы',
+        title: 'Приложение',
         template: getTemplate(6)
+      },
+      {
+        id: 8,
+        title: 'Директива',
+        template: getTemplate(7)
+      },
+      {
+        id: 9,
+        title: 'app.component',
+        template: getTemplate(8)
+      },
+      {
+        id: 10,
+        title: 'root-slide',
+        template: getTemplate(9)
+      },
+      {
+        id: 11,
+        title: 'Проблемы',
+        template: getTemplate(10)
+      },
+      {
+        id: 12,
+        title: '+ и -',
+        template: getTemplate(11)
+      },
+      {
+        id: 13,
+        title: 'Выводы',
+        template: getTemplate(12)
       }
     ];
     return {slides};
