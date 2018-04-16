@@ -391,7 +391,7 @@ const templates = [
   /** Eleventh Slide*/
   `<h1>Проблемы</h1>
   <div class="center flex-box">
-    <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/httpweb.png?raw=true" width="700" alt="">
+    <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/giphy.gif?raw=true" width="700" alt="">
   </div>`,
 
   /** Twelfth Slide*/
