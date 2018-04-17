@@ -438,9 +438,6 @@ const templates = [
   /** Fourteenth Slide*/
   `
 <h1>Динамический шаблон</h1>
-<div class="center flex-box mb20">
-  <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/template.jpg?raw=true" width="500" alt="">
-</div>
 <pre style="background:rgba(238,238,238,0.92);color:#000">@Component({
     selector: <span style="color:#093">'my-ng-include'</span>,
     template: <span style="color:#093">'&lt;div #myNgIncludeContent>&lt;/div>'</span>
@@ -472,7 +469,14 @@ const templates = [
     }
 }
 
-</pre>`,
+</pre>
+<br>
+<pre style="background:rgba(238,238,238,0.92);color:#000">  changeTemplate(): <span style="font-weight:700">void</span> {
+    <span style="color:#33f;font-weight:700">window</span>.<span style="color:#33f;font-weight:700">scrollTo</span>(<span style="color:#06f">0</span>, <span style="color:#06f">0</span>);
+    this.el.nativeElement.innerHTML <span style="color:#00f">=</span> this.appTemplate;
+  }
+</pre>
+`,
 
   /** Fifteenth Slide*/
   `<h1>+</h1>

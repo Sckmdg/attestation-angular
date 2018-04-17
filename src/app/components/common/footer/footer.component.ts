@@ -9,11 +9,16 @@ import { Location } from '@angular/common';
 export class FooterComponent {
   @Input() currentSlideId: number;
   @Input() slides: number;
+  spinner = false;
 
   constructor(
     private location: Location) { }
 
   goBack(): void {
     this.location.back();
+  }
+
+  beCool(): void {
+    this.spinner = !this.spinner;
   }
 }
