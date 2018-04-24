@@ -508,7 +508,14 @@ const templates = [
   /** Sixteenth Slide*/
   `<div class="center flex-box">
   <img src="https://github.com/Sckmdg/sckmdg.github.io/blob/master/img/reality.png?raw=true" alt="">
-</div>`
+</div>
+
+<ul>
+<li><a target="_blank" href="https://github.com/Sckmdg/attestation-angular">Текущий проект</a></li>
+<li><a target="_blank" href="https://github.com/Sckmdg/food">Сервис по заказу еды</a></li>
+<li><a target="_blank" href="https://docs.google.com/document/d/1f9JRHz4rERgyQ6RKYHPdQ03sy2I2rzOdx1JuyUkOb2w/edit#">Гуглодока</a></li>
+</ul>
+`
 ];
 
 
